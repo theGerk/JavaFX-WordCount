@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,9 +34,12 @@ public class GUIController implements Initializable {
 	private void handleButtonAction(ActionEvent event) {
 		try {
 			List<String> text = Files.readAllLines(new FileChooser().showOpenDialog(myList.getScene().getWindow()).toPath());
+			ObservableList<String> value = FXCollections.observableArrayList();
 			for (String t : text) {
-				System.out.println(t);
+				value.add(t);
+
 			}
+			myList.setItems(value);
 		} catch (IOException ex) {
 			//netbeans generated code...
 			//may want to change this line up later
