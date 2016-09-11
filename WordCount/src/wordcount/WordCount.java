@@ -15,6 +15,11 @@ import javafx.util.Pair;
  */
 public class WordCount {
 
+	private static WordCountTree makeTree(List<String> input) {
+		WordCountTree root = new WordCountTree();
+		WordCountTree current = root;
+	}
+
 	public static List<String> toWordList(String str) {
 		str = str.toLowerCase();
 		StringBuilder wordBuilder = new StringBuilder();
