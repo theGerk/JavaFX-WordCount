@@ -8,5 +8,5 @@
 
 <GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="wordcount.GUIController">
 	<Button text="Parse File" onAction="#handelParseButton" fx:id="button" />
-	<ListView fx:id="myList" GridPane.rowIndex="1" GridPane.columnSpan=""  editable="false"></ListView>
+	<ListView fx:id="myList" GridPane.rowIndex="1" GridPane.columnSpan="4" editable="false"></ListView>
 </GridPane>

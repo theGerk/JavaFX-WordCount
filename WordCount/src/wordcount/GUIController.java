@@ -17,7 +17,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 import javafx.util.Pair;
@@ -38,7 +37,7 @@ public class GUIController implements Initializable {
 			ObservableList<String> fxList = FXCollections.observableArrayList();
 			List<Pair<String, Integer>> data = Word.toWordCount(text);
 			for (Pair<String, Integer> wordCountPair : data) {
-				fxList.add(String.format("%6d %s", wordCountPair.getValue(), wordCountPair.getKey()));
+				fxList.add(String.format("%d %s", wordCountPair.getValue(), wordCountPair.getKey()));
 			}
 			myList.setItems(fxList);
 		} catch (IOException ex) {
