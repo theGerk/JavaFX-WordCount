@@ -8,31 +8,20 @@ package wordcount;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
  * @author Benji
  */
-public class WordCount {
+public class Word {
 
-	private static WordCountTree makeTree(List<String> input) {
-		WordCountTree root = new WordCountTree();
-
-		for (String s : input) {
-			WordCountTree current = root;
-
-			for (char c : s.toCharArray()) {
-				int cValue = (int) (c - 'a');
-				if (current.children[cValue] == null) {
-					current.children[cValue] = new WordCountTree();
-				}
-				current = current.children[cValue];
-			}
-
-			current.count++;
+	public static List<String> toWordList(List<String> strs) {
+		List<String> output = new ArrayList();
+		for (String s : strs) {
+			output.addAll(toWordList(s));
 		}
-
-		return root;
+		return output;
 	}
 
 	public static List<String> toWordList(String str) {

@@ -8,4 +8,4 @@ Phase 3:
 	Create WordCount Class that has a function CountWords, that takes in a string and returns an array of Pairs of String, Integer. Where the String is a word and the integer is how often that word appears.
 
 Phase 4:
-	Add function to WordCount that takes in a List of Strings, and returns the same thing, then pass the text from the file (using the File.readAllLines function) into the new function, sort it's output based on the Integers, then put that output into the ListView.
+	Add function to WordCount that takes in a List of Strings, and returns the same thing as CountWords, then pass the text from the file (using the File.readAllLines function) into the new function, sort it's output based on the Integers, then put that output into the ListView.
