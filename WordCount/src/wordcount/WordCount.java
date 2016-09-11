@@ -17,7 +17,22 @@ public class WordCount {
 
 	private static WordCountTree makeTree(List<String> input) {
 		WordCountTree root = new WordCountTree();
-		WordCountTree current = root;
+
+		for (String s : input) {
+			WordCountTree current = root;
+
+			for (char c : s.toCharArray()) {
+				int cValue = (int) (c - 'a');
+				if (current.children[cValue] == null) {
+					current.children[cValue] = new WordCountTree();
+				}
+				current = current.children[cValue];
+			}
+
+			current.count++;
+		}
+
+		return root;
 	}
 
 	public static List<String> toWordList(String str) {
