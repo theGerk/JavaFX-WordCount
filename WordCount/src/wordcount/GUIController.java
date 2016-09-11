@@ -36,8 +36,10 @@ public class GUIController implements Initializable {
 			List<String> text = Files.readAllLines(new FileChooser().showOpenDialog(myList.getScene().getWindow()).toPath());
 			ObservableList<String> value = FXCollections.observableArrayList();
 			for (String t : text) {
-				value.add(t);
-
+				List<String> words = WordCount.toWordList(t);
+				for (String w : words) {
+					value.add(w);
+				}
 			}
 			myList.setItems(value);
 		} catch (IOException ex) {
