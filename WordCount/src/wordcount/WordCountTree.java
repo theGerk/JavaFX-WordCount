@@ -23,10 +23,30 @@ public class WordCountTree {
 		children = new WordCountTree[26];
 	}
 
-	public static WordCountTree makeTree(List<String> input) {
+	public WordCountTree(List<String> words) {
+		count = 0;
+		children = new WordCountTree[26];
+
+		for (String s : words) {
+			WordCountTree current = this;
+
+			for (char c : s.toCharArray()) {
+				int cValue = (int) (c - 'a');
+				if (current.children[cValue] == null) {
+					current.children[cValue] = new WordCountTree();
+				}
+				current = current.children[cValue];
+			}
+
+			current.count++;
+		}
+
+	}
+
+	public static WordCountTree makeTree(List<String> words) {
 		WordCountTree root = new WordCountTree();
 
-		for (String s : input) {
+		for (String s : words) {
 			WordCountTree current = root;
 
 			for (char c : s.toCharArray()) {

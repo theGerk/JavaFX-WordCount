@@ -41,4 +41,12 @@ public class Word {
 		}
 		return output;
 	}
+
+	public static List<Pair<String, Integer>> toWordCount(String input) {
+		return new WordCountTree(toWordList(input)).toList();
+	}
+
+	public static List<Pair<String, Integer>> toWordCount(List<String> input) {
+		return new WordCountTree(toWordList(input)).toList();
+	}
 }

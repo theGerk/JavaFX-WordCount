@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
+import javafx.util.Pair;
 
 /**
  *
@@ -31,17 +32,15 @@ public class GUIController implements Initializable {
 	private ListView myList;
 
 	@FXML
-	private void handleButtonAction(ActionEvent event) {
+	private void handelParseButton(ActionEvent event) {
 		try {
 			List<String> text = Files.readAllLines(new FileChooser().showOpenDialog(myList.getScene().getWindow()).toPath());
-			ObservableList<String> value = FXCollections.observableArrayList();
-			for (String t : text) {
-				List<String> words = Word.toWordList(t);
-				for (String w : words) {
-					value.add(w);
-				}
+			ObservableList<String> fxList = FXCollections.observableArrayList();
+			List<Pair<String, Integer>> data = Word.toWordCount(text);
+			for (Pair<String, Integer> wordCountPair : data) {
+				fxList.add(String.format("%6d %s", wordCountPair.getValue(), wordCountPair.getKey()));
 			}
-			myList.setItems(value);
+			myList.setItems(fxList);
 		} catch (IOException ex) {
 			//netbeans generated code...
 			//may want to change this line up later

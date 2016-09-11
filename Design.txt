@@ -1,11 +1,14 @@
-Phase 1:
+Phase 1 (Complete):
 	Create GUI using JavaFX and FXML that has a single button that when clicked opens a File Chooser to choose one file, when the file is selected then write all text from the file to console.
 
-Phase 2:
+Phase 2 (Complete):
 	Create ListView and instead of writing text from file to console, write each line to a new item in the ListView
 
-Phase 3:
+Phase 3 (Complete):
 	Create WordCount Class that has a function CountWords, that takes in a string and returns an array of Pairs of String, Integer. Where the String is a word and the integer is how often that word appears.
 
-Phase 4:
+Phase 4 (Complete):
 	Add function to WordCount that takes in a List of Strings, and returns the same thing as CountWords, then pass the text from the file (using the File.readAllLines function) into the new function, sort it's output based on the Integers, then put that output into the ListView.
+
+Phase 5:
+	Add buttons on top for Sorting Alphebetically, sorting by length of word, and sorting by number of occurances.
