@@ -59,6 +59,15 @@ public class WordCountTree {
 	}
 
 	private void makeList(String prefix, ArrayList<Pair<String, Integer>> completed) {
-
+		if (count != 0) {
+			completed.add(new Pair<>(prefix, count));
+		}
+		char currentChar = 'a';
+		for (WordCountTree c : children) {
+			if (c != null) {
+				c.makeList(prefix + currentChar, completed);
+			}
+			currentChar++;
+		}
 	}
 }
