@@ -27,6 +27,8 @@ import javafx.util.Pair;
  */
 public class GUIController implements Initializable {
 
+	private List<Pair<String, Integer>> data;
+
 	@FXML
 	private ListView myList;
 
@@ -34,17 +36,46 @@ public class GUIController implements Initializable {
 	private void handelParseButton(ActionEvent event) {
 		try {
 			List<String> text = Files.readAllLines(new FileChooser().showOpenDialog(myList.getScene().getWindow()).toPath());
-			ObservableList<String> fxList = FXCollections.observableArrayList();
-			List<Pair<String, Integer>> data = Word.toWordCount(text);
-			for (Pair<String, Integer> wordCountPair : data) {
-				fxList.add(String.format("%d %s", wordCountPair.getValue(), wordCountPair.getKey()));
-			}
-			myList.setItems(fxList);
+			data = Word.toWordCount(text);
+			setList();
 		} catch (IOException ex) {
 			//netbeans generated code...
 			//may want to change this line up later
 			Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
 		}
+	}
+
+	private void setList() {
+		ObservableList<String> fxList = FXCollections.observableArrayList();
+		for (Pair<String, Integer> wordCountPair : data) {
+			fxList.add(String.format("%d %s", wordCountPair.getValue(), wordCountPair.getKey()));
+		}
+		myList.setItems(fxList);
+
+	}
+
+	@FXML
+	private void sortAlphebetically(ActionEvent event) {
+		data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			return a.getKey().compareTo(b.getKey());
+		});
+		setList();
+	}
+
+	@FXML
+	private void sortByLength(ActionEvent event) {
+		data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			return b.getKey().length() - a.getKey().length();
+		});
+		setList();
+	}
+
+	@FXML
+	private void sortByOccurences(ActionEvent event) {
+		data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			return b.getValue().compareTo(a.getValue());
+		});
+		setList();
 	}
 
 	@Override
