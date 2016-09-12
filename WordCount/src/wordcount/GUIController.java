@@ -95,7 +95,6 @@ public class GUIController implements Initializable {
 	}
 
 	@FXML
-
 	private void sortByOccurences(ActionEvent event) {
 		if (lastSort == SortType.Occurences) {
 			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
