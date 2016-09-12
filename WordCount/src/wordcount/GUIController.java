@@ -54,27 +54,61 @@ public class GUIController implements Initializable {
 
 	}
 
+	private enum SortType {
+		Alphebetical,
+		WordLength,
+		Occurences
+	};
+
+	private SortType lastSort = null;
+
 	@FXML
 	private void sortAlphebetically(ActionEvent event) {
-		data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
-			return a.getKey().compareTo(b.getKey());
-		});
+		if (lastSort == SortType.Alphebetical) {
+			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+				return b.getKey().compareTo(a.getKey());
+			});
+			lastSort = null;
+		} else {
+			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+				return a.getKey().compareTo(b.getKey());
+			});
+			lastSort = SortType.Alphebetical;
+		}
 		setList();
 	}
 
 	@FXML
-	private void sortByLength(ActionEvent event) {
-		data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
-			return b.getKey().length() - a.getKey().length();
-		});
+	private void sortByWordLength(ActionEvent event) {
+		if (lastSort == SortType.WordLength) {
+			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+				return a.getKey().length() - b.getKey().length();
+			});
+			lastSort = null;
+		} else {
+			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+				return b.getKey().length() - a.getKey().length();
+			});
+			lastSort = SortType.WordLength;
+		}
 		setList();
 	}
 
 	@FXML
+
 	private void sortByOccurences(ActionEvent event) {
-		data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
-			return b.getValue().compareTo(a.getValue());
-		});
+		if (lastSort == SortType.Occurences) {
+			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+				return a.getValue().compareTo(b.getValue());
+			});
+			lastSort = null;
+		} else {
+			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+				return b.getValue().compareTo(a.getValue());
+			});
+			lastSort = SortType.Occurences;
+
+		}
 		setList();
 	}
 
