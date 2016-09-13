@@ -8,7 +8,7 @@
 
 <GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="wordcount.GUIController">
 	<Button text="Parse File" GridPane.columnSpan="3" onAction="#handelParseButton" fx:id="button" />
-	<Button text="Alphebetically" onAction="#sortAlphebetically" GridPane.rowIndex="1" />
+	<Button text="Alphebetically" onAction="#sortAlphabetically" GridPane.rowIndex="1" />
 	<Button text="Word Length" onAction="#sortByWordLength" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 	<Button text="Occurences" onAction="#sortByOccurences" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 	<ListView fx:id="myList" GridPane.rowIndex="2" GridPane.columnSpan="3" editable="false" />

@@ -87,8 +87,11 @@ public class GUIController implements Initializable {
 	 */
 	private SortType lastSort = null;
 
+	/**
+	 * Sort alphabeticaly
+	 */
 	@FXML
-	private void sortAlphebetically(ActionEvent event) {
+	private void sortAlphabetically() {
 		if (lastSort == SortType.Alphebetical) {
 			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return b.getKey().compareTo(a.getKey());
