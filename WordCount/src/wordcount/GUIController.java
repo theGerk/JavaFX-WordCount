@@ -22,22 +22,32 @@ import javafx.stage.FileChooser;
 import javafx.util.Pair;
 
 /**
+ * Controller class for the GUI
  *
  * @author Benji
  */
 public class GUIController implements Initializable {
 
+	//the current list of word and appearences of them being displayed.
 	private List<Pair<String, Integer>> data;
 
+	//reference to the ListView that appears in the GUI
 	@FXML
 	private ListView myList;
 
+	/**
+	 * Opens the file chooser, sets the data variable to the generated list of
+	 * word, occurrence pairs. Then uses setList to make it appear on the GUI.
+	 *
+	 * @param event the event that is being handled. (unused)
+	 */
 	@FXML
 	private void handelParseButton(ActionEvent event) {
 		try {
 			List<String> text = Files.readAllLines(new FileChooser().showOpenDialog(myList.getScene().getWindow()).toPath());
 			data = Word.toWordCount(text);
 			setList();
+			lastSort = null;
 		} catch (IOException ex) {
 			//netbeans generated code...
 			//may want to change this line up later
@@ -45,6 +55,10 @@ public class GUIController implements Initializable {
 		}
 	}
 
+	/**
+	 * Puts the current values in data into the GUI element, in the order they
+	 * appear in data.
+	 */
 	private void setList() {
 		ObservableList<String> fxList = FXCollections.observableArrayList();
 		for (Pair<String, Integer> wordCountPair : data) {
@@ -54,12 +68,23 @@ public class GUIController implements Initializable {
 
 	}
 
+	/**
+	 * an enum for different ways the data can be sorted.
+	 */
 	private enum SortType {
-		Alphebetical,
-		WordLength,
-		Occurences
+		Alphebetical, //standard alphebetical ordering
+		WordLength, //sort by lenght of the word
+		Occurences	//sort by number of occurrences of the word
 	};
 
+	/**
+	 * Keeps track of the last sort button that was clicked, this is only for
+	 * the reverse sorting.
+	 *
+	 * This will be set to null if the same button is clicked twice.
+	 *
+	 * This will also be reset to null if a new file is parsed.
+	 */
 	private SortType lastSort = null;
 
 	@FXML

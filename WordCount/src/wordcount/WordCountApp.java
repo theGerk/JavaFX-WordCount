@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * The class that starts the program... I guess?
  *
  * @author Benji
  */
