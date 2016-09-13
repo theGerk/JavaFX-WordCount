@@ -88,7 +88,7 @@ public class GUIController implements Initializable {
 	private SortType lastSort = null;
 
 	/**
-	 * Sort alphabeticaly
+	 * Sort alphabetically
 	 */
 	@FXML
 	private void sortAlphabetically() {
