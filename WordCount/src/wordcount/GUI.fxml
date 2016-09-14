@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="wordcount.GUIController">
-	<Button text="Parse File" GridPane.columnSpan="3" onAction="#handelParseButton" fx:id="button" />
+	<Button text="Parse File" onAction="#handelParseButton" />
 	<Button text="Alphabetically" onAction="#sortAlphabetically" GridPane.rowIndex="1" />
 	<Button text="Word Length" onAction="#sortByWordLength" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 	<Button text="Occurrences" onAction="#sortByOccurences" GridPane.columnIndex="2" GridPane.rowIndex="1" />
