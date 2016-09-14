@@ -11,4 +11,4 @@ Phase 4 (Complete):
 	Add function to WordCount that takes in a List of Strings, and returns the same thing as CountWords, then pass the text from the file (using the File.readAllLines function) into the new function, sort it's output based on the Integers, then put that output into the ListView.
 
 Phase 5:
-	Add buttons on top for Sorting Alphebetically, sorting by length of word, and sorting by number of occurances.
+	Add buttons on top for Sorting Alphabetically, sorting by length of word, and sorting by number of occurrences.
