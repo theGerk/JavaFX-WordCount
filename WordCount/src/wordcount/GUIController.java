@@ -72,7 +72,7 @@ public class GUIController implements Initializable {
 	 * an enum for different ways the data can be sorted.
 	 */
 	private enum SortType {
-		Alphebetical, //standard alphebetical ordering
+		Alphabetical, //standard alphabetical ordering
 		WordLength, //sort by lenght of the word
 		Occurences	//sort by number of occurrences of the word
 	};
@@ -88,11 +88,13 @@ public class GUIController implements Initializable {
 	private SortType lastSort = null;
 
 	/**
-	 * Sort alphabetically
+	 * Sorts alphabetically, or reverse alphabetically if it was just used.
+	 *
+	 * @param event the event that is being handled. (unused)
 	 */
 	@FXML
-	private void sortAlphabetically() {
-		if (lastSort == SortType.Alphebetical) {
+	private void sortAlphabetically(ActionEvent event) {
+		if (lastSort == SortType.Alphabetical) {
 			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return b.getKey().compareTo(a.getKey());
 			});
@@ -101,11 +103,16 @@ public class GUIController implements Initializable {
 			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return a.getKey().compareTo(b.getKey());
 			});
-			lastSort = SortType.Alphebetical;
+			lastSort = SortType.Alphabetical;
 		}
 		setList();
 	}
 
+	/**
+	 * Sorts by word length, or reverse sorts if it was just used.
+	 *
+	 * @param event the event that is being handled. (unused)
+	 */
 	@FXML
 	private void sortByWordLength(ActionEvent event) {
 		if (lastSort == SortType.WordLength) {
@@ -122,6 +129,11 @@ public class GUIController implements Initializable {
 		setList();
 	}
 
+	/**
+	 * Sorts by number of occurrences, or reverse sorts if it was just used.
+	 *
+	 * @param event
+	 */
 	@FXML
 	private void sortByOccurences(ActionEvent event) {
 		if (lastSort == SortType.Occurences) {
@@ -139,6 +151,15 @@ public class GUIController implements Initializable {
 		setList();
 	}
 
+	/**
+	 * Unused???
+	 *
+	 * Not really sure what this does, it just was generated and deleting it
+	 * made things break.
+	 *
+	 * @param url
+	 * @param rb
+	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		// TODO
