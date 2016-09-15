@@ -5,6 +5,7 @@
  */
 package wordcount;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -29,7 +30,7 @@ import javafx.util.Pair;
 public class GUIController implements Initializable {
 
 	//the current list of word and appearences of them being displayed.
-	private List<Pair<String, Integer>> data;
+	private List<Pair<String, Integer>> wordCountPairs;
 
 	//reference to the ListView that appears in the GUI
 	@FXML
@@ -44,10 +45,19 @@ public class GUIController implements Initializable {
 	@FXML
 	private void handelParseButton(ActionEvent event) {
 		try {
-			List<String> text = Files.readAllLines(new FileChooser().showOpenDialog(myList.getScene().getWindow()).toPath());
-			data = Word.toWordCount(text);
-			setList();
-			lastSort = null;
+			//Make filechooser at put all lines from it into a List of String
+			File fileChoosen = new FileChooser().showOpenDialog(myList.getScene().getWindow());
+
+			//don't do anything unless they selected a file.
+			if (fileChoosen != null) {
+				List<String> lines = Files.readAllLines(fileChoosen.toPath());
+
+				//set data, make it appear on screen
+				wordCountPairs = Word.toWordCount(lines);
+				setGUIList();
+
+				lastSort = null;	//reset lastSort to null after we parse a new file.
+			}
 		} catch (IOException ex) {
 			//netbeans generated code...
 			//may want to change this line up later
@@ -59,9 +69,9 @@ public class GUIController implements Initializable {
 	 * Puts the current values in data into the GUI element, in the order they
 	 * appear in data.
 	 */
-	private void setList() {
+	private void setGUIList() {
 		ObservableList<String> fxList = FXCollections.observableArrayList();
-		for (Pair<String, Integer> wordCountPair : data) {
+		for (Pair<String, Integer> wordCountPair : wordCountPairs) {
 			fxList.add(String.format("%d %s", wordCountPair.getValue(), wordCountPair.getKey()));
 		}
 		myList.setItems(fxList);
@@ -95,17 +105,17 @@ public class GUIController implements Initializable {
 	@FXML
 	private void sortAlphabetically(ActionEvent event) {
 		if (lastSort == SortType.Alphabetical) {
-			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return b.getKey().compareTo(a.getKey());
 			});
 			lastSort = null;
 		} else {
-			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return a.getKey().compareTo(b.getKey());
 			});
 			lastSort = SortType.Alphabetical;
 		}
-		setList();
+		setGUIList();
 	}
 
 	/**
@@ -116,17 +126,17 @@ public class GUIController implements Initializable {
 	@FXML
 	private void sortByWordLength(ActionEvent event) {
 		if (lastSort == SortType.WordLength) {
-			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return a.getKey().length() - b.getKey().length();
 			});
 			lastSort = null;
 		} else {
-			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return b.getKey().length() - a.getKey().length();
 			});
 			lastSort = SortType.WordLength;
 		}
-		setList();
+		setGUIList();
 	}
 
 	/**
@@ -137,18 +147,18 @@ public class GUIController implements Initializable {
 	@FXML
 	private void sortByOccurences(ActionEvent event) {
 		if (lastSort == SortType.Occurences) {
-			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return a.getValue().compareTo(b.getValue());
 			});
 			lastSort = null;
 		} else {
-			data.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
+			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return b.getValue().compareTo(a.getValue());
 			});
 			lastSort = SortType.Occurences;
 
 		}
-		setList();
+		setGUIList();
 	}
 
 	/**

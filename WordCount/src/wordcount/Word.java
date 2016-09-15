@@ -30,6 +30,7 @@ public final class Word {
 	}
 
 	/**
+	 * Turns a List of strings into a list of words
 	 *
 	 * @param strs a list of Strings, each on of which is going to be split into
 	 * words to be returned.
