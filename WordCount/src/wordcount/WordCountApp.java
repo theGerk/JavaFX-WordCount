@@ -18,6 +18,11 @@ import javafx.stage.Stage;
  */
 public class WordCountApp extends Application {
 
+	/**
+	 *
+	 * @param stage the Stage for the program.
+	 * @throws Exception
+	 */
 	@Override
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));

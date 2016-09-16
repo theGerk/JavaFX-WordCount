@@ -45,7 +45,7 @@ public class GUIController implements Initializable {
 	@FXML
 	private void handelParseButton(ActionEvent event) {
 		try {
-			//Make filechooser at put all lines from it into a List of String
+
 			File fileChoosen = new FileChooser().showOpenDialog(myList.getScene().getWindow());
 
 			//don't do anything unless they selected a file.
@@ -162,10 +162,7 @@ public class GUIController implements Initializable {
 	}
 
 	/**
-	 * Unused???
-	 *
-	 * Not really sure what this does, it just was generated and deleting it
-	 * made things break.
+	 * This class does not use it's initialize function
 	 *
 	 * @param url
 	 * @param rb

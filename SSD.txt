@@ -1,0 +1,9 @@
+The GUI is just one window described in GUI.fxml.
+The controller class or it is in GUIController.java
+
+The GUI has 4 buttons and a list.
+
+One of the buttons will open a file chooser, if a valid file then the file is parsed using the Word and WordCountTree class, the number of each word is then output into the list.
+The other three buttons sort the list, and a second click on any will reverse sort.
+
+The parsing is done by parsing all the file into words, then constructing a tree with each word and then recursivly reading through the tree to see the number of each word there has been.

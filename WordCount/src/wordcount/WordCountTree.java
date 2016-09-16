@@ -49,11 +49,13 @@ public class WordCountTree {
 		count = 0;
 		children = new WordCountTree[26];
 
-		for (String s : words) {
+		//iterates through all words
+		for (String currentWord : words) {
 			WordCountTree current = this;
 
-			for (char c : s.toCharArray()) {
-				int cValue = (int) (c - 'a');
+			//puts each letter of the current word into the correct child node.
+			for (char currentChar : currentWord.toCharArray()) {
+				int cValue = (int) (currentChar - 'a');
 				if (cValue >= 26 || cValue < 0) {
 					throw new Exception("your word had a non-letter character in it, and is thus invalid.");
 				}
