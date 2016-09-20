@@ -52,19 +52,22 @@ public final class Word {
 	 * @return the list of words
 	 */
 	public static List<String> toWordList(String str) {
-		str = str.toLowerCase();
-		StringBuilder wordBuilder = new StringBuilder();
-		List<String> output = new ArrayList<>();
-		for (char c : str.toCharArray()) {
-			if (c >= 'a' && c <= 'z') {
-				wordBuilder.append(c);
+		str = str.toLowerCase() + ' ';	//converts to lower case and appends space so that we can assume that all characters are lowercase and that the last word is always added to the output array because it is terminated with at least a space.
+
+		StringBuilder wordBuilder = new StringBuilder();	//used to build the words
+		List<String> output = new ArrayList<>();			//output, will be returned
+
+		for (char characterInString : str.toCharArray()) {
+
+			//If it's a letter, then append it to the word being built,
+			//otherwise append the word into the output array.
+			if (characterInString >= 'a' && characterInString <= 'z') {
+				wordBuilder.append(characterInString);
 			} else if (wordBuilder.length() != 0) {
 				output.add(wordBuilder.toString());
 				wordBuilder = new StringBuilder();
 			}
-		}
-		if (wordBuilder.length() != 0) {
-			output.add(wordBuilder.toString());
+
 		}
 		return output;
 	}

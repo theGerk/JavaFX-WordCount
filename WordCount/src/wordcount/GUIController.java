@@ -47,7 +47,6 @@ public class GUIController implements Initializable {
 		try {
 
 			File fileChoosen = new FileChooser().showOpenDialog(myList.getScene().getWindow());
-
 			//don't do anything unless they selected a file.
 			if (fileChoosen != null) {
 				List<String> lines = Files.readAllLines(fileChoosen.toPath());
@@ -105,11 +104,13 @@ public class GUIController implements Initializable {
 	@FXML
 	private void sortAlphabetically(ActionEvent event) {
 		if (lastSort == SortType.Alphabetical) {
+			//reverse sort
 			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return b.getKey().compareTo(a.getKey());
 			});
 			lastSort = null;
 		} else {
+			//sort
 			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return a.getKey().compareTo(b.getKey());
 			});
@@ -126,11 +127,13 @@ public class GUIController implements Initializable {
 	@FXML
 	private void sortByWordLength(ActionEvent event) {
 		if (lastSort == SortType.WordLength) {
+			//reverse sort
 			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return a.getKey().length() - b.getKey().length();
 			});
 			lastSort = null;
 		} else {
+			//sort
 			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return b.getKey().length() - a.getKey().length();
 			});
@@ -147,11 +150,13 @@ public class GUIController implements Initializable {
 	@FXML
 	private void sortByOccurences(ActionEvent event) {
 		if (lastSort == SortType.Occurences) {
+			//reverse sort
 			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return a.getValue().compareTo(b.getValue());
 			});
 			lastSort = null;
 		} else {
+			//sort
 			wordCountPairs.sort((Pair<String, Integer> a, Pair<String, Integer> b) -> {
 				return b.getValue().compareTo(a.getValue());
 			});
